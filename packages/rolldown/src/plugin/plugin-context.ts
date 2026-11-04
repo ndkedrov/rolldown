@@ -443,20 +443,20 @@ export class PluginContextImpl extends MinimalPluginContextImpl {
         this.data.removeSavedResolveOptions(receipt);
       }
 
-    if (res == null) return null;
-    const info =
-      this.data.getModuleOption(this.data.toModuleId(res.id, res.attributes)) ||
-      ({} as ModuleOptions);
-    return {
-      ...res,
-      external:
-        res.external === 'relative'
-          ? unreachable(`The PluginContext resolve result external couldn't be 'relative'`)
-          : res.external,
-      ...info,
-      moduleSideEffects: info.moduleSideEffects ?? res.moduleSideEffects ?? null,
-      packageJsonPath: res.packageJsonPath,
-    };
+      if (res == null) return null;
+      const info =
+        this.data.getModuleOption(this.data.toModuleId(res.id, res.attributes)) ||
+        ({} as ModuleOptions);
+      return {
+        ...res,
+        external:
+          res.external === 'relative'
+            ? unreachable(`The PluginContext resolve result external couldn't be 'relative'`)
+            : res.external,
+        ...info,
+        moduleSideEffects: info.moduleSideEffects ?? res.moduleSideEffects ?? null,
+        packageJsonPath: res.packageJsonPath,
+      };
     } finally {
       endNativeCall(context);
     }
