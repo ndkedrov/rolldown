@@ -96,7 +96,7 @@ pub mod bundler_options {
       },
       tsconfig::TsConfig,
       tsconfig_merge::merge_transform_options_with_tsconfig as merge_tsconfig,
-      watch_option::{OnInvalidate, WatchOption},
+      watch_option::{OnInvalidate, WatchOption, WatcherFileWatcherOptions},
     },
   };
 
@@ -115,7 +115,6 @@ pub use crate::{
       chunk_debug_info::{ChunkDebugInfo, FacadeChunkEliminationReason},
       chunk_reason_type::ChunkReasonType,
       cross_chunk_import_item::CrossChunkImportItem,
-      module_group::ModuleGroup,
       preliminary_filename::PreliminaryFilename,
     },
   },
@@ -135,9 +134,14 @@ pub use crate::{
     SharedFileEmitter,
   },
   hmr::{
-    client_hmr_input::ClientHmrInput, client_hmr_update::ClientHmrUpdate,
-    hmr_boundary::HmrBoundary, hmr_patch::HmrPatch, hmr_stamp_table::HmrStampTable,
-    hmr_update::HmrUpdate, lazy_chunk_output::HmrLazyChunkOutput,
+    client_hmr_input::ClientHmrInput,
+    client_hmr_update::ClientHmrUpdate,
+    hmr_boundary::HmrBoundary,
+    hmr_patch::HmrPatch,
+    hmr_stamp_table::HmrStampTable,
+    hmr_update::HmrUpdate,
+    lazy_chunk_output::HmrLazyChunkOutput,
+    lazy_proxy_id::{LAZY_PROXY_QUERY, is_lazy_proxy, lazy_proxy_target, write_lazy_proxy_id},
   },
   module::{
     Module,
@@ -159,9 +163,6 @@ pub use crate::{
   types::bundle_mode::BundleMode,
   types::chunk_idx::ChunkIdx,
   types::chunk_kind::ChunkKind,
-  types::concatenate_wrapped_module::{
-    ConcatenateWrappedModuleKind, RenderedConcatenatedModuleParts,
-  },
   types::constant_value::{ConstExportMeta, ConstantValue},
   types::deconflict::ModuleScopeSymbolIdMap,
   types::defer_sync_scan_data::DeferSyncScanData,
@@ -171,7 +172,7 @@ pub use crate::{
   types::flat_options::FlatOptions,
   types::hmr_info::HmrInfo,
   types::hybrid_index_vec::HybridIndexVec,
-  types::import_attribute::ImportAttribute,
+  types::import_attributes::ImportAttributes,
   types::import_kind::ImportKind,
   types::import_record::{
     DynamicImportExprInfo, ImportRecordIdx, ImportRecordMeta, ImportRecordStateInit,

@@ -1,9 +1,12 @@
 # Hub maintenance package
 
-This fork starts at upstream `v1.2.16` and ships `rolldown@1.2.16+hub.1`.
-It changes the exact `@oxc-project/types` dependency from `=0.156.0` to
-`0.157.0`. The published packages have identical declaration/code files;
-only their package metadata differs. Native bindings remain upstream 1.2.16.
+This fork now ships `rolldown@1.3.0+hub.1`, tracking upstream `v1.3.0`
+(including native binding versions). Its first release started at `v1.2.16`
+and updated the exact `@oxc-project/types` dependency from `=0.156.0` to
+`0.157.0`; those type packages have identical declaration/code files.
+Upstream 1.3.0 subsequently incorporated that type update. This maintenance
+release retains the explicit 0.157.0 pin and the reproducible package/test
+workflow while adopting all upstream 1.3.0 changes.
 
 The release uses a verified upstream npm tarball, preserving every runtime
 file instead of recompiling unchanged Rust or generated JavaScript. The
