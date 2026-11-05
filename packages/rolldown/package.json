@@ -132,7 +132,7 @@
     "publint": "publint ."
   },
   "dependencies": {
-    "@oxc-project/types": "catalog:",
+    "@oxc-project/types": "0.157.0",
     "@rolldown/pluginutils": "catalog:"
   },
   "devDependencies": {
